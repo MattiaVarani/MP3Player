@@ -155,6 +155,7 @@ namespace MusicPlayer
             
         }
 
+        //play song from list
         private void listBoxAll_DoubleClick(object sender, EventArgs e)
         {
             TxtSong.Text = listBoxAll.SelectedItem.ToString();
