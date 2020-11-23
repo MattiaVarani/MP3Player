@@ -16,17 +16,22 @@ namespace MusicPlayer
     public partial class Display : Form
     {
 
+        //lists necessary for saving files
+
         WMPLib.WindowsMediaPlayer MP3player = new WMPLib.WindowsMediaPlayer();
 
         List<string> files = new List<string>();
         List<string> path = new List<string>();
         List<string> saved = new List<string>();
+
+        //variables for list management
         int index = 0;
         string[] filePaths;
         bool playing = false;
         
         private void Display_Load(object sender, EventArgs e)
         {
+            //filling list
             Form form1 = new Form();
             listBoxAll.Items.Clear();
             filePaths = Directory.GetFiles(@"Music\", "*.mp3*");
@@ -53,6 +58,7 @@ namespace MusicPlayer
         
         private void BtnPlay_Click(object sender, EventArgs e)
         {
+            //play and pause
             if (playing)
             {
                 MP3player.controls.pause();
@@ -69,6 +75,7 @@ namespace MusicPlayer
         }
         private void BtnRandom_Click(object sender, EventArgs e)
         {
+            //random song play
             Random rnd = new Random();
             int randomIndex = rnd.Next(0, listBoxAll.Items.Count);
             TxtSong.Text = listBoxAll.Items[randomIndex].ToString();
@@ -81,6 +88,7 @@ namespace MusicPlayer
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
+            //play precedent song
             if (index > 0)
             {
                 index--;
@@ -92,6 +100,7 @@ namespace MusicPlayer
         }
         private void BtnNext_Click(object sender, EventArgs e)
         {
+            //play next song
             if (index < listBoxAll.Items.Count)
             {
                 index++;
@@ -104,10 +113,12 @@ namespace MusicPlayer
         }
         private void BtnStop_Click(object sender, EventArgs e)
         {
+            //stop
             MP3player.controls.stop();
 
         }
 
+        //adding mp3 files
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             DialogResult dr = this.FileDialog.ShowDialog();
@@ -123,7 +134,6 @@ namespace MusicPlayer
                 File.Copy(filePath, "Music\\" + fileName, true);
                 Console.WriteLine("copied");
                 
-                //string filePath = item.Replace(" ", "_");
             }
             
             listBoxAll.Items.Clear();
