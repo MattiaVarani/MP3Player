@@ -135,6 +135,8 @@ namespace MusicPlayer
                 Console.WriteLine("copied");
                 
             }
+
+            saved.Clear();
             
             listBoxAll.Items.Clear();
             filePaths = Directory.GetFiles(@"Music\", "*.mp3*");
@@ -153,6 +155,7 @@ namespace MusicPlayer
                 Console.WriteLine(listBoxAll.Items[i]);
             }
             
+            Application.Restart();  //help to fix a problem
         }
 
         //play song from list
